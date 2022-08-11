@@ -555,7 +555,9 @@ static struct pwm_device *kpdbl_master;
 static u32 kpdbl_master_period_us;
 DECLARE_BITMAP(kpdbl_leds_in_use, NUM_KPDBL_LEDS);
 static bool is_kpdbl_master_turn_on;
-
+#if defined(CONFIG_MACH_LGE)
+static struct mutex led_sequence_lock; /* RGB LED synchronize in kddi */
+#endif
 #ifdef CONFIG_LEDS_PM8941_EMOTIONAL
 struct qpnp_led_data *red_led;
 struct qpnp_led_data *green_led;
@@ -565,9 +567,6 @@ struct qpnp_led_data *kpdbl_lpg2;
 static int kpdbl_brightness_flag;
 #if defined(CONFIG_LEDS_KEY_REAR)
 static int is_kpdbl_on;
-#endif
-#if defined(CONFIG_MACH_LGE)
-static struct mutex led_sequence_lock; /* RGB LED synchronize in kddi */
 #endif
 
 extern void change_led_pattern(int pattern);
