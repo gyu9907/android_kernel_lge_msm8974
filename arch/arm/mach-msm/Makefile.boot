@@ -153,6 +153,7 @@ else ifneq ($(CONFIG_DTS_TARGET),"")
         dtb-$(CONFIG_MACH_MSM8974_B1_KR)  += msm8974-v2-2-b1-kr.dtb
         dtb-$(CONFIG_MACH_MSM8974_VU3_KR)  += msm8974-vu3-kr.dtb
         dtb-$(CONFIG_MACH_MSM8974_VU3_KR)  += msm8974-v2-vu3-kr.dtb
+        dtb-$(CONFIG_MACH_MSM8974_VU3_KR)  += msm8974-v2-2-vu3-kr.dtb
         dtb-$(CONFIG_MACH_MSM8974_Z_KR)  += msm8974-z-kr.dtb
         dtb-$(CONFIG_MACH_MSM8974_Z_KR)  += msm8974-v2-z-kr.dtb
         dtb-$(CONFIG_MACH_MSM8974_Z_KR)  += msm8974-v2-2-z-kr.dtb
