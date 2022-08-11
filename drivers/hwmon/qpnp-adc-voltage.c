@@ -119,7 +119,7 @@
 #define QPNP_VADC_ERR_COUNT					20
 
 #if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI4)
-#if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_G2) || defined (CONFIG_MACH_MSM8974_TIGERS)
+#if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_G2) || defined (CONFIG_MACH_MSM8974_TIGERS) || defined (CONFIG_TOUCHSCREEN_SYNAPTICS_VU3)
 extern void check_touch_xo_therm(int type);
 int touch_thermal_mode = 0;
 #endif
@@ -1523,7 +1523,7 @@ void xo_therm_logging(void)
 		tmp.physical, tmp.adc_code);
 
 #if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_I2C_RMI4)
-#if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_G2) || defined (CONFIG_MACH_MSM8974_TIGERS)
+#if defined (CONFIG_TOUCHSCREEN_SYNAPTICS_G2) || defined (CONFIG_MACH_MSM8974_TIGERS) || defined (CONFIG_TOUCHSCREEN_SYNAPTICS_VU3)
 #define TOUCH_HIGH_TEMPERATURE	50
 #define TOUCH_LOW_TEMPERATURE	47
 			if (touch_thermal_mode == 0 && tmp.physical >= TOUCH_HIGH_TEMPERATURE) {
