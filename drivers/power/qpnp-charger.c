@@ -6447,12 +6447,13 @@ static void qpnp_monitor_batt_temp(struct work_struct *work)
 			(res.force_update == true && res.state == CHG_BATT_DECCUR_STATE &&
 			res.dc_current != DC_CURRENT_DEF)) {
 			qpnp_chg_ibatmax_set(chip, res.dc_current);
+			/*
 			if (res.change_lvl == STS_CHE_STPCHG_TO_DECCUR) {
 				qpnp_chg_charge_pause(chip, res.disable_chg);
 				schedule_delayed_work(&chip->eoc_work,
 					msecs_to_jiffies(EOC_CHECK_PERIOD_MS));
 				wake_unlock(&chip->lcs_wake_lock);
-			}
+			}*/
 		} else if (res.change_lvl == STS_CHE_NORMAL_TO_STPCHG ||
 			(res.force_update == true &&
 			res.state == CHG_BATT_STPCHG_STATE)) {
