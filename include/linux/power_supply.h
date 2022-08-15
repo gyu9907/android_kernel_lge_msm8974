@@ -185,6 +185,9 @@ enum power_supply_property {
 #if defined(CONFIG_LGE_PM_LLK_MODE)
 	POWER_SUPPLY_PROP_STORE_DEMO_ENABLED,
 #endif
+#if defined(CONFIG_MACH_MSM8974_VU3_KR) && defined(CONFIG_WIRELESS_CHARGER)
+	POWER_SUPPLY_PROP_WLC_CHARGING_BAR,
+#endif
 	/* Properties of type `const char *' */
 	POWER_SUPPLY_PROP_MODEL_NAME,
 	POWER_SUPPLY_PROP_MANUFACTURER,
