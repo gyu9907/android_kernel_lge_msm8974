@@ -28,6 +28,10 @@
 #include <linux/qpnp/power-on.h>
 #include <linux/of_batterydata.h>
 
+#ifdef CONFIG_MACH_MSM8974_VU3_KR
+#define CONFIG_LGE_ONLY_READ_CURRENT
+#endif
+
 /* BMS Register Offsets */
 #define REVISION1			0x0
 #define REVISION2			0x1
