@@ -57,7 +57,7 @@
 			label = "hot_key";
 			gpios = <&pm8941_gpios 4 0x1>;
 			linux,input-type = <1>;
-			linux,code = <250>;
+			linux,code = <219>;
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 		};
@@ -113,7 +113,7 @@
 			label = "hot_key";
 			gpios = <&pm8941_gpios 4 0x1>;
 			linux,input-type = <1>;
-			linux,code = <250>;
+			linux,code = <219>;
 			gpio-key,wakeup;
 			debounce-interval = <15>;
 		};
