@@ -1640,17 +1640,9 @@ static int do_execve_common(const char *filename,
 	if (retval < 0)
 		goto out;
 
-	/* search_binary_handler can release file and it may be freed */
-	is_su = d_is_su(file->f_dentry);
-
 	retval = search_binary_handler(bprm,regs);
 	if (retval < 0)
 		goto out;
-
-	if (is_su && capable(CAP_SYS_ADMIN)) {
-		current->flags |= PF_SU;
-		su_exec();
-	}
 
 	/* execve succeeded */
 	current->fs->in_exec = 0;
