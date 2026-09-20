@@ -1563,7 +1563,6 @@ static int do_execve_common(const char *filename,
 	bool clear_in_exec;
 	int retval;
 	const struct cred *cred = current_cred();
-	bool is_su;
 
 	/*
 	 * We move the actual failure in case of RLIMIT_NPROC excess from
