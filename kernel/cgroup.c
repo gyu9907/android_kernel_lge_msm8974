@@ -2196,7 +2196,8 @@ retry_find_task:
 		 * only need to check permissions on one of them.
 		 */
 		tcred = __task_cred(tsk);
-		if (cred->euid &&
+		/* Privileged schedulers may move tasks across UIDs. */
+		if (cred->euid && !capable(CAP_SYS_NICE) &&
 		    cred->euid != tcred->uid &&
 		    cred->euid != tcred->suid) {
 			/*
