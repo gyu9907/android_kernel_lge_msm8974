@@ -79,9 +79,6 @@ static inline int hwrng_init(struct hwrng *rng)
 			return err;
 	}
 
-	if (current_quality > 0 && !hwrng_fill)
-		start_khwrngd();
-
 	return 0;
 }
 
@@ -225,6 +222,7 @@ static ssize_t hwrng_attr_current_store(struct device *dev,
 				break;
 			hwrng_cleanup(current_rng);
 			current_rng = rng;
+			start_khwrngd();
 			err = 0;
 			break;
 		}
@@ -341,8 +339,12 @@ static int hwrng_fillfn(void *unused)
 
 static void start_khwrngd(void)
 {
+	/* Publish the initialized device before the new thread can run. */
+	if (!current_rng || !current_quality || hwrng_fill)
+		return;
+
 	hwrng_fill = kthread_run(hwrng_fillfn, NULL, "hwrng");
-	if (hwrng_fill == ERR_PTR(-ENOMEM)) {
+	if (IS_ERR(hwrng_fill)) {
 		pr_err("hwrng_fill thread creation failed");
 		hwrng_fill = NULL;
 	}
@@ -403,6 +405,7 @@ int hwrng_register(struct hwrng *rng)
 	}
 	INIT_LIST_HEAD(&rng->list);
 	list_add_tail(&rng->list, &rng_list);
+	start_khwrngd();
 out_unlock:
 	mutex_unlock(&rng_mutex);
 out:
@@ -426,6 +429,8 @@ void hwrng_unregister(struct hwrng *rng)
 			err = hwrng_init(current_rng);
 			if (err)
 				current_rng = NULL;
+			else
+				start_khwrngd();
 		}
 	}
 	if (list_empty(&rng_list)) {
